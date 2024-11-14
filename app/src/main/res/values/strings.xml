@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Conta Application</string>
+    <string name="digite_apenas_n_meros">Digite apenas números</string>
+    <string name="valor_positivo">valor deve ser positivo</string>
+    <string name="campo_vazio">Campo deve ser preenchido</string>
+    <string name="pix_apenas_numeros">Sua chave pix deve conter apenas números</string>
+    <string-array name="spinnerAlternativo">
+        <item>DEPOSITAR</item>
+        <item>RETIRAR</item>
+    </string-array>
+    <string-array name="spinnerPix">
+        <item>CPF</item>
+        <item>CELULAR</item>
+    </string-array>
+</resources>
+
