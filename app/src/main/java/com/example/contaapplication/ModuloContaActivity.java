@@ -39,10 +39,28 @@ public class ModuloContaActivity extends AppCompatActivity {
 
         repositorioTransacoes = new RepositorioTransacoes(this);
         repositorioConta = new RepositorioConta(this);
-        ListView listView = findViewById(R.id.ListViewConta);
+
         ultSaldo = findViewById(R.id.textViewSaldo);
         valorText = findViewById(R.id.editTextValor); // Inicializa o EditText
 
+        atualizarLista();
+
+
+        opcoesSpinner = findViewById(R.id.spinnerConta);
+        configuraçãoSpinner();
+
+        exibirSaldo();
+    }
+
+    // Método para configurar o spinner
+    public void configuraçãoSpinner() {
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.spinnerAlternativo, android.R.layout.simple_spinner_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        opcoesSpinner.setAdapter(arrayAdapter);
+    }
+
+    private void atualizarLista(){
+        ListView listView = findViewById(R.id.ListViewConta);
         //pega a lista do BD e passa para o mobile
         List<Transacoes> listaDB = repositorioTransacoes.listarTransacoes();
 
@@ -60,19 +78,6 @@ public class ModuloContaActivity extends AppCompatActivity {
         //adapter para obter a lista a tela
         transacaoAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dados);
         listView.setAdapter(transacaoAdapter);
-
-
-        opcoesSpinner = findViewById(R.id.spinnerConta);
-        configuraçãoSpinner();
-
-        exibirSaldo();
-    }
-
-    // Método para configurar o spinner
-    public void configuraçãoSpinner() {
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.spinnerAlternativo, android.R.layout.simple_spinner_item);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        opcoesSpinner.setAdapter(arrayAdapter);
     }
 
     public void EnviarValor(View view) {
@@ -89,7 +94,9 @@ public class ModuloContaActivity extends AppCompatActivity {
 
         // exibe o saldo
         exibirSaldo();
+        atualizarLista();
         Log.d("Debug", "Saldo exibido.");
+
     }
 
     public boolean validarValor(){
