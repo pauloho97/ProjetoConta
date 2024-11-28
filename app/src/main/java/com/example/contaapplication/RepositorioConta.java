@@ -24,10 +24,6 @@ public class RepositorioConta extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sqlConta);
         Log.i("conta", "Tabela 'conta' criada");
 
-        // Inserir o saldo inicial (se necessário)
-        String sqlInserirSaldoInicial = "INSERT INTO conta (valor) VALUES (0.0)";
-        sqLiteDatabase.execSQL(sqlInserirSaldoInicial);
-        Log.i("conta", "Saldo inicial inserido na tabela 'conta'");
     }
 
     // Adiciona saldo na tabela

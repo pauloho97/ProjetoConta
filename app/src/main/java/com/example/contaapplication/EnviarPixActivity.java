@@ -15,5 +15,8 @@ public class EnviarPixActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enviar_pix);
 
+        setTitle("PIX");
     }
+
+
 }

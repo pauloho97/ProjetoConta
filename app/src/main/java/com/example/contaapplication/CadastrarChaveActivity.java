@@ -17,6 +17,7 @@ public class CadastrarChaveActivity extends AppCompatActivity {
     private Spinner spinnerPix;
     private boolean isEditing = false; // Flag para evitar loops infinitos
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,5 +136,10 @@ public class CadastrarChaveActivity extends AppCompatActivity {
             }
             formatado.append(apenasNumeros.charAt(i));
         }
+    }
+
+    private void EnviarChavePixALista(){
+
+
     }
 }
