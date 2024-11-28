@@ -40,6 +40,7 @@ public class ModuloContaActivity extends AppCompatActivity {
         repositorioTransacoes = new RepositorioTransacoes(this);
         repositorioConta = new RepositorioConta(this);
 
+
         ultSaldo = findViewById(R.id.textViewSaldo);
         valorText = findViewById(R.id.editTextValor); // Inicializa o EditText
 
@@ -94,6 +95,8 @@ public class ModuloContaActivity extends AppCompatActivity {
 
         // exibe o saldo
         exibirSaldo();
+
+        //atualiza a lista
         atualizarLista();
         Log.d("Debug", "Saldo exibido.");
 
@@ -133,7 +136,8 @@ public class ModuloContaActivity extends AppCompatActivity {
             novoSaldo += valor; // Atualiza o saldo
             conta.setSaldo(novoSaldo); // Define o novo saldo
 
-            repositorioConta.adicionarSaldo(conta); // Atualiza o saldo na base de dados
+
+            repositorioConta.atualizarSaldo(conta); // Atualiza o saldo na base de dados
 
             Transacoes transacoes = new Transacoes("DEPOSITO",valor);
             repositorioTransacoes.adicionarTransacao(transacoes); // Adiciona a transação de depósito
@@ -146,7 +150,8 @@ public class ModuloContaActivity extends AppCompatActivity {
                 novoSaldo -= valor; // Atualiza o saldo
                 conta.setSaldo(novoSaldo); // Define o novo saldo
 
-                repositorioConta.adicionarSaldo(conta); // Atualiza o saldo na base de dados
+                repositorioConta.atualizarSaldo(conta); // Atualiza o saldo na base de dados
+
                 Transacoes transacoes = new Transacoes("RETIRADO",valor);
                 repositorioTransacoes.adicionarTransacao(transacoes); // Adiciona a transação de retirada
 
@@ -165,13 +170,15 @@ public class ModuloContaActivity extends AppCompatActivity {
         String saldoFormatado = String.format(Locale.US, "%.2f", saldo); // Formata o saldo
         ultSaldo.setText("Saldo atual R$ " + valorFormatado);*/
 
+        exibirSaldo();
         valorText.setText(""); // Limpa o campo
     }
 
     // Método para exibir o saldo atual na interface
     public void exibirSaldo() {
-        Float saldo = conta.getSaldo();  // Obtém o saldo atual da conta
-        String saldoFormatado = String.format(Locale.US, "%.2f", saldo); // Formata o saldo
-        ultSaldo.setText("Saldo atual R$ " + saldoFormatado);  // Exibe o saldo na TextView
+        Float saldo = repositorioConta.obterSaldo();  // Obtém o saldo atual da conta
+        conta.setSaldo(saldo); // Define o saldo da conta);
+        String saldoFormatado = String.format(Locale.getDefault(), "%.2f", saldo); // Formata o saldo
+        ultSaldo.setText("Saldo atual R$ " + saldoFormatado);  // Exibe o saldo na TextView*/
     }
 }

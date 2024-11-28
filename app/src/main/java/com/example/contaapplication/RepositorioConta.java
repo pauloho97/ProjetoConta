@@ -8,6 +8,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RepositorioConta extends SQLiteOpenHelper {
 
     public RepositorioConta(@Nullable Context context) {
@@ -20,24 +23,44 @@ public class RepositorioConta extends SQLiteOpenHelper {
         String sqlConta = "CREATE TABLE conta (valor REAL)";
         sqLiteDatabase.execSQL(sqlConta);
         Log.i("conta", "Tabela 'conta' criada");
+
+        // Inserir o saldo inicial (se necessário)
+        String sqlInserirSaldoInicial = "INSERT INTO conta (valor) VALUES (0.0)";
+        sqLiteDatabase.execSQL(sqlInserirSaldoInicial);
+        Log.i("conta", "Saldo inicial inserido na tabela 'conta'");
     }
 
     // Adiciona saldo na tabela
     public void adicionarSaldo(Conta conta) {
-        SQLiteDatabase db = getWritableDatabase(); //Cria o BD ou modifica
+        //SQLiteDatabase db = getWritableDatabase(); //Cria o BD ou modifica
         String sql = "INSERT INTO conta (valor) VALUES (" + conta.getSaldo() + ")";
-        Log.i("conta", "SQL insert conta: " + sql);
-        db.execSQL(sql);
+        super.getWritableDatabase().execSQL(sql);
+        Log.i("conta", "Saldo atualizado " + sql);
+       // db.execSQL(sql);
     }
 
     // Obtém o saldo da tabela
     public Float obterSaldo() {
-        SQLiteDatabase db = getReadableDatabase(); //Cria o BD ou modifica
-        // Recupera o saldo armazenado
-        Cursor cursor = db.rawQuery("SELECT valor FROM conta LIMIT 1", null);
+        String sql = "SELECT valor FROM conta LIMIT 1";
+        Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 
-        // Se houver dados, retorna o saldo, caso contrário, retorna 0.0f
-        return cursor.moveToFirst() ? cursor.getFloat(0) : 0.0f;
+        Float saldo = 0.0f;  // Valor padrão em caso de não encontrar dados
+        if (cursor.moveToFirst()) { // Verifica se há registros no cursor
+            saldo = cursor.getFloat(0);  // Obtém o valor do saldo (primeira coluna)
+        }
+
+        Log.d("Saldo Atual", "Valor recuperado do banco: " + saldo);
+        cursor.close();
+        return saldo;
+    }
+
+    //atualiza o saldo da conta
+    public Float atualizarSaldo(Conta conta) {
+        String sql = "UPDATE conta SET valor = " + conta.getSaldo();
+        super.getWritableDatabase().execSQL(sql);
+        Log.i("conta", "Saldo atualizado " + sql);
+
+        return conta.getSaldo();
     }
 
     @Override

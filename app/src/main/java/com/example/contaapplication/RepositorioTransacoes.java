@@ -43,7 +43,7 @@ public class RepositorioTransacoes extends SQLiteOpenHelper {
         cursor.moveToFirst();
         for(int i=0; i < cursor.getCount(); i++){
 
-            Transacoes transacoes = new Transacoes(cursor.getString(0),cursor.getFloat(2));
+            Transacoes transacoes = new Transacoes(cursor.getString(1),cursor.getFloat(2));
             transacoes.setId(cursor.getInt(0)); // coluna 0
 
             lista.add(transacoes);

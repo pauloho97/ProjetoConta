@@ -1,7 +1,7 @@
 package com.example.contaapplication;
 
 public class Conta {
-    private Float saldo = 0f;
+    private Float saldo = 0.0f;
 
     public Float getSaldo() {
         return saldo;
