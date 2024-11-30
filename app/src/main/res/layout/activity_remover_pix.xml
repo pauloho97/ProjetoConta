@@ -20,12 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:gravity="center"
-            android:text="Remova a chave Pix abaixo em formato cpf ou telefone" />
-
-        <Spinner
-            android:id="@+id/spinnerRemoverDoPix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="Digite o id da chave pix ao qual deseja remover" />
 
         <EditText
             android:id="@+id/EditTextRemoverChavePix"
