@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -13,9 +14,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CadastrarChaveActivity extends AppCompatActivity {
-    private EditText editTextPix;
-    private Spinner spinnerPix;
+
+    private EditText editTextPix; //valor digitado pelo usuário
+    private Spinner spinnerPix; //opção spinner que o usuário escolhe
     private boolean isEditing = false; // Flag para evitar loops infinitos
+    RepositorioPix repositorioPix; //variável do RepositórioPix
 
 
     @SuppressLint("MissingInflatedId")
@@ -26,6 +29,8 @@ public class CadastrarChaveActivity extends AppCompatActivity {
 
         editTextPix = findViewById(R.id.EditTextChavePix);
         spinnerPix = findViewById(R.id.spinnerDoPix);
+
+        repositorioPix = new RepositorioPix(this);
 
         configuraçãoSpinner();
         setupTextWatcher();
@@ -63,8 +68,11 @@ public class CadastrarChaveActivity extends AppCompatActivity {
     }
 
     public void CadastrarPix(View view) {
+        //valida se o usuário digitou correto
         validarValorPix();
 
+        //envia o valor que o usuário digitou para a lista
+        EnviarChavePixAoBD();
     }
 
     public boolean validarValorPix() {
@@ -77,7 +85,6 @@ public class CadastrarChaveActivity extends AppCompatActivity {
         } else if (editTextPix.length() < 11) {
             Toast.makeText(this, "[ERRO] Preencha 11 números", Toast.LENGTH_SHORT).show();
 
-            editTextPix.setText("");
             return false;
         }
 
@@ -100,6 +107,10 @@ public class CadastrarChaveActivity extends AppCompatActivity {
                 formatarCelular(apenasNumeros, formatado);
 
             }
+
+            // Debug: Verificar se o texto foi formatado corretamente
+            Log.d("PixDebug", "Texto formatado: " + formatado.toString());
+
 
             // Apenas atualiza o texto se formatado não estiver vazio
             if (formatado.length() > 0) {
@@ -138,8 +149,19 @@ public class CadastrarChaveActivity extends AppCompatActivity {
         }
     }
 
-    private void EnviarChavePixALista(){
+    private void EnviarChavePixAoBD(){
+        String chave = editTextPix.getText().toString();
+        String valorChave = spinnerPix.getSelectedItem().toString();
 
+
+        // Debug: Verificar o valor capturado da chave
+        Log.d("PixDebug", "Chave recebida do EditText: " + chave);
+
+        Pix pix = new Pix(null,chave,valorChave);
+        repositorioPix.adicionarChavePix(pix);
+
+        // Verificar se o banco de dados recebeu os dados corretamente
+        Log.d("PixDebug", "Chave salva no banco: " + chave);
 
     }
 }
