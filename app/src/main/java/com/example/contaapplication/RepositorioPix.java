@@ -79,8 +79,8 @@ public class RepositorioPix extends SQLiteOpenHelper {
         Log.i("Pix","SQL delete chave pix: " + sql);
     }
 
-    public boolean existeChavePix() {
-        String sql = "select COUNT(*) from pix";
+    public boolean existeChavePix(String chave) {
+        String sql = "select COUNT(*) from pix where chave = '" + chave + "'";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
         boolean existe = false;
 

@@ -68,11 +68,17 @@ public class CadastrarChaveActivity extends AppCompatActivity {
     }
 
     public void CadastrarPix(View view) {
-        //valida se o usuário digitou correto
-        validarValorPix();
+        //valida se o usuário repetiu o valor da chave
+        if (repositorioPix.existeChavePix(editTextPix.getText().toString())) {
+            Toast.makeText(this, "[ERRO], chave já cadastrada, tente outra", Toast.LENGTH_SHORT).show();
+        }else {
+            //valida se o usuário digitou correto
+            validarValorPix();
 
-        //envia o valor que o usuário digitou para a lista
-        EnviarChavePixAoBD();
+            //envia o valor que o usuário digitou para a lista
+            EnviarChavePixAoBD();
+        }
+
     }
 
     public boolean validarValorPix() {
@@ -90,7 +96,7 @@ public class CadastrarChaveActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Chave cadastrada com sucesso", Toast.LENGTH_SHORT).show();
 
-        editTextPix.setText("");
+        //editTextPix.setText("");
         return true;
     }
 
