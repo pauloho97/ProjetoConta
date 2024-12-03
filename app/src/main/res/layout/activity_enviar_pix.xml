@@ -41,7 +41,9 @@
             android:hint="Digite a chave PIX"
             android:inputType="phone"
             android:minHeight="48dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:maxLength="11"
+            android:digits="0123456789"/>
 
         <EditText
             android:id="@+id/Valor"
