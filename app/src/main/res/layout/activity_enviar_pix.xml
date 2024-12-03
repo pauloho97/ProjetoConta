@@ -27,23 +27,21 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView4"
+        <Spinner
+            android:id="@+id/spinnerEnviarPix"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CPF/Celular" />
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/ChavePix"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:ems="10"
             android:hint="Digite a chave PIX"
             android:inputType="phone"
             android:minHeight="48dp"
-            android:textSize="18sp"
-            android:maxLength="11"
-            android:digits="0123456789"/>
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/Valor"
@@ -63,5 +61,12 @@
             android:onClick="enviarPix"
             android:text="Enviar PIX"
             android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textViewParaSaldo"
+            android:layout_width="198dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="50dp"
+            android:textSize="20sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

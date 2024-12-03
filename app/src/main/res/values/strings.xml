@@ -4,11 +4,21 @@
     <string name="valor_positivo">valor deve ser positivo</string>
     <string name="campo_vazio">Campo deve ser preenchido</string>
     <string name="pix_apenas_numeros">Sua chave pix deve conter apenas números</string>
+
+    //spinner para escolher a operação da conta
     <string-array name="spinnerAlternativo">
         <item>DEPOSITAR</item>
         <item>RETIRAR</item>
     </string-array>
+
+    //spinner para escolher a chave cadastro pix
     <string-array name="spinnerPix">
+        <item>CPF</item>
+        <item>CELULAR</item>
+    </string-array>
+
+    //spinner para enviar pix
+    <string-array name="spinnerEnviarPix">
         <item>CPF</item>
         <item>CELULAR</item>
     </string-array>

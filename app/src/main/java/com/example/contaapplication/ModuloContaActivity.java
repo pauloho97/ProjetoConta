@@ -138,7 +138,7 @@ public class ModuloContaActivity extends AppCompatActivity {
 
             repositorioConta.atualizarSaldo(conta); // Atualiza o saldo na base de dados
 
-            Transacoes transacoes = new Transacoes("DEPOSITO",valor);
+            Transacoes transacoes = new Transacoes("DEPÓSITO",valor);
             repositorioTransacoes.adicionarTransacao(transacoes); // Adiciona a transação de depósito
 
         } else if (opcoesSpinner.getSelectedItem().toString().equals("RETIRAR")) {
@@ -160,14 +160,6 @@ public class ModuloContaActivity extends AppCompatActivity {
         // Log para verificar as transações
         Log.d("Transacoes", "Transação adicionada: " + opcoesSpinner.getSelectedItem().toString() + " R$ " + valor);
 
-       // Formata o saldo: 0.00
-        //valorFormatado = String.format(Locale.US, "%.2f", novoSaldo);
-
-
-
-       /* Float saldo = repositorioConta.obterSaldo();  // Obtém o saldo atual da conta
-        String saldoFormatado = String.format(Locale.US, "%.2f", saldo); // Formata o saldo
-        ultSaldo.setText("Saldo atual R$ " + valorFormatado);*/
 
         exibirSaldo();
         valorText.setText(""); // Limpa o campo
