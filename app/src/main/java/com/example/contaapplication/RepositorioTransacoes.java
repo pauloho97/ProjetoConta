@@ -38,7 +38,7 @@ public class RepositorioTransacoes extends SQLiteOpenHelper {
     //mostra a lista de transações
     public List<Transacoes> listarTransacoes(){
         ArrayList<Transacoes> lista = new ArrayList<Transacoes>();
-        String sql = "select * from transacoes";
+        String sql = "select * from transacoes order by id desc";
         Cursor cursor = getWritableDatabase().rawQuery(sql,null);
         cursor.moveToFirst();
         for(int i=0; i < cursor.getCount(); i++){

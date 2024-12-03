@@ -79,6 +79,7 @@ public class RepositorioPix extends SQLiteOpenHelper {
         Log.i("Pix","SQL delete chave pix: " + sql);
     }
 
+    //esse método busca se já existe no BD a chave digitada pelo usuário
     public boolean existeChavePix(String chave) {
         String sql = "select COUNT(*) from pix where chave = '" + chave + "'";
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);

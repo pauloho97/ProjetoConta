@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,7 +41,7 @@ public class ModuloContaActivity extends AppCompatActivity {
 
 
         ultSaldo = findViewById(R.id.textViewSaldo);
-        valorText = findViewById(R.id.editTextValor); // Inicializa o EditText
+        valorText = findViewById(R.id.Valor); // Inicializa o EditText
 
         atualizarLista();
 
